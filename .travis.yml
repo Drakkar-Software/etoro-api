@@ -1,0 +1,24 @@
+notifications:
+  email: false
+os: linux
+dist: xenial
+language: python
+cache: pip
+python: 3.8-dev
+services:
+  - docker
+
+before_install:
+  - python3 -m pip install --upgrade pip
+
+install:
+  - wget https://oss.sonatype.org/content/repositories/releases/io/swagger/swagger-codegen-cli/2.2.1/swagger-codegen-cli-2.2.1.jar -O swagger-codegen-cli.jar
+  - export SWAGGER_GEN_BINARY="java -jar $(pwd)/swagger-codegen-cli.jar"
+  - cd generate && bash generate.sh && cd ..
+
+jobs:
+  include:
+    - name: "Linux - Python 3.8 - Python sources"
+      stage: test
+      script:
+        - pytest python

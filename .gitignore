@@ -109,3 +109,6 @@ ENV/
 *.csv
 *.ods
 *.c
+
+# swagger generated files
+python/etoro*
