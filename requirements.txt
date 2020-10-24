@@ -1,0 +1,5 @@
+# api generation
+swagger-codegen>=0.1.24, <0.2
+
+# async http requests
+aiohttp>=3.7.0, <3.8
